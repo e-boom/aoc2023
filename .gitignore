@@ -1,32 +1,24 @@
-# Prerequisites
-*.d
+# Build directories and binary files
+.xmake/
+vsxmake2022/
+build/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# User spesific settings
+CMakeUserPresets.json
 
-# Precompiled Headers
-*.gch
-*.pch
+# IDE files
+.vs/
+.idea/
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*~
+_ReSharper*
+*.log
+# OS Generated Files
+.DS_Store
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app

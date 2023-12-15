@@ -1,0 +1,14 @@
+#pragma once
+#include <filesystem>
+
+namespace ${PROJECT_NAME}::Config {
+	inline constexpr std::string_view project_name = "${PROJECT_NAME}";
+	inline constexpr std::string_view project_version = "${VERSION}";
+	inline constexpr int project_version_major { ${VERSION_MAJOR} };
+	inline constexpr int project_version_minor { ${VERSION_MINOR} };
+	inline constexpr int project_version_patch { ${VERSION_ALTER} };
+	inline constexpr int project_version_tweak { ${VERSION_BUILD} };
+	inline constexpr std::string_view git_sha = "${GIT_COMMIT}";
+
+	inline const std::filesystem::path resources = "${PROJECT_RESOURCES}";
+}
