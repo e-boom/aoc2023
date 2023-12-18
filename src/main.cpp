@@ -5,6 +5,7 @@
 #include "days/day1.hpp"
 #include "days/day13.hpp"
 #include "days/day2.hpp"
+#include "days/day3.hpp"
 
 int main(int const argc, char **argv)
 {
@@ -12,8 +13,8 @@ int main(int const argc, char **argv)
     spdlog::info("Welcome to AdventOfCode 2023");
     try
     {
-        constexpr std::array<std::string_view, 6> choices{
-            "1a", "1b", "2a", "2b", "13a", "13b",
+        constexpr std::array<std::string_view, 8> choices{
+            "1a", "1b", "2a", "2b", "13a", "13b", "3a", "3b"
         };
         constexpr auto defaultChoice = choices.back();
 
@@ -57,6 +58,10 @@ int main(int const argc, char **argv)
             returnCode = day13(AdventOfCode::Part::one);
         else if (day == choices[5])
             returnCode = day13(AdventOfCode::Part::two);
+        else if (day == choices[6])
+            returnCode = day3(AdventOfCode::Part::one);
+        else if (day == choices[7])
+            returnCode = day3(AdventOfCode::Part::two);
         else
             throw std::runtime_error("We ran out of days!");
     }
