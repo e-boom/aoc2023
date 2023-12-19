@@ -12,11 +12,6 @@
 
 namespace AdventOfCode
 {
-    namespace{
-        //constexpr auto fileName = "demo_3.txt";
-        constexpr auto fileName = "input_3.txt";
-    }
-
     struct Box // bounding box
     {
         int64_t left{}, top{}, right{}, bottom{};
@@ -27,10 +22,12 @@ namespace AdventOfCode
         }
     };
     
-    inline int day3(Part part)
+    inline int day3(Part const part)
     {
         spdlog::info(fmt::format("Gear Ratios"));
 
+        //constexpr auto fileName = "demo_3.txt";
+        constexpr auto fileName = "input_3.txt";
         auto const inputPath(Config::resources / fileName);
         auto input = std::ifstream(inputPath);
 
@@ -105,10 +102,10 @@ namespace AdventOfCode
             }
             return sum;
         });
-        spdlog::critical("Partnumbers sum = {}", sum);
+        spdlog::critical("Partnumber sum = {}", sum);
         spdlog::critical("Gear ratio sum = {}", ratioSum);
         if (part == Part::one && sum == 546312 || 
-            part == Part::two && ratioSum == 467835)
+            part == Part::two && ratioSum == 87449461)
             return EXIT_SUCCESS;
         return EXIT_FAILURE;
     }
