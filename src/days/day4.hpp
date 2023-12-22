@@ -17,7 +17,7 @@ namespace AdventOfCode
 
         struct Card
         {
-            unsigned long nr;
+            UNumber nr;
             size_t numberOfWinningNumbers;
             size_t numberOfCards{1};
         };
@@ -32,11 +32,11 @@ namespace AdventOfCode
                 auto winning = getNumbers(match[2]);
                 auto numbers = getNumbers(match[3]);
 
-                std::vector<unsigned long> intersection;
+                std::vector<UNumber> intersection;
                 std::ranges::sort(winning);
                 std::ranges::sort(numbers);
                 std::ranges::set_intersection(winning, numbers, std::back_inserter(intersection));
-                cards.emplace_back(std::stoul(match[1]), intersection.size());
+                cards.emplace_back(std::stoull(match[1]), intersection.size());
             }
         }
 

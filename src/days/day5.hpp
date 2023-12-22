@@ -18,9 +18,9 @@ namespace AdventOfCode
 
         struct AlmanacItem
         {
-            unsigned long destination{};
-            unsigned long source{};
-            unsigned long range{};
+            UNumber destination{};
+            UNumber source{};
+            UNumber range{};
 
             [[nodiscard]] bool inRange(UNumber const value) const
             {
@@ -91,7 +91,7 @@ namespace AdventOfCode
             }
         };
 
-        std::vector<unsigned long> seeds;
+        std::vector<UNumber> seeds;
         Almanac almanac;
         AlmanacMap *currentMap{};
         for (std::string line; std::getline(input, line);)
