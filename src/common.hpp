@@ -16,6 +16,13 @@ namespace AdventOfCode
         two
     };
 
+    /// function to convert string to UNumber
+    /// throws std::invalid_argument if the string is not a number
+    inline UNumber toUNumber(std::string const &numberString)
+    {
+        return std::stoull(numberString);
+    }
+    
     /// Convert the string with numbers as a vector of unsigned longs
     inline auto getNumbers(std::string const &numberString)
     {
@@ -25,9 +32,11 @@ namespace AdventOfCode
         boost::sregex_iterator const end;
         while (it != end)
         {
-            numbers.push_back(std::stoull(it->str(1)));
+            numbers.push_back(toUNumber(it->str(1)));
             ++it;
         }
         return numbers;
     }
+
+    
 }

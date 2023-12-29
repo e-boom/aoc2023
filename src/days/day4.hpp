@@ -36,7 +36,7 @@ namespace AdventOfCode
                 std::ranges::sort(winning);
                 std::ranges::sort(numbers);
                 std::ranges::set_intersection(winning, numbers, std::back_inserter(intersection));
-                cards.emplace_back(std::stoull(match[1]), intersection.size());
+                cards.emplace_back(toUNumber(match[1]), intersection.size());
             }
         }
 

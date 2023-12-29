@@ -9,6 +9,7 @@
 #include "days/day4.hpp"
 #include "days/day5.hpp"
 #include "days/day6.hpp"
+#include "days/day7.hpp"
 
 int main(int const argc, char **argv)
 {
@@ -16,8 +17,26 @@ int main(int const argc, char **argv)
     spdlog::info("Welcome to AdventOfCode 2023");
     try
     {
-        constexpr std::array<std::string_view, 14> choices{
-            "1a", "1b", "2a", "2b", "13a", "13b", "3a", "3b", "4a", "4b", "5a", "5b", "6a", "6b"
+        std::unordered_map<unsigned, std::function<int(AdventOfCode::Part)>> const dayFunctions = {
+            {  1, AdventOfCode::day1},
+            {  2, AdventOfCode::day2},
+            {  3, AdventOfCode::day3},
+            {  4, AdventOfCode::day4},
+            {  5, AdventOfCode::day5},
+            {  6, AdventOfCode::day6},
+            {  7, AdventOfCode::day7},
+            { 13, AdventOfCode::day13},
+        };
+        
+        constexpr std::array<std::string_view, 16> choices{
+            "1a", "1b",
+            "2a", "2b",
+            "13a", "13b",
+            "3a", "3b",
+            "4a", "4b",
+            "5a", "5b",
+            "6a", "6b",
+            "7a" , "7b"
         };
         constexpr auto defaultChoice = choices.back();
 
@@ -38,6 +57,10 @@ int main(int const argc, char **argv)
             .help("list all implemented days of advent")
             .default_value(false)
             .implicit_value(true);
+        program.add_argument("-v", "--verbose")
+            .help("display extra debug info")
+            .default_value(false)
+            .implicit_value(true);
 
         program.parse_args(argc, argv);
         if (program.get<bool>("list"))
@@ -47,37 +70,16 @@ int main(int const argc, char **argv)
             return EXIT_SUCCESS;
         }
 
+        if (program.get<bool>("verbose"))
+            spdlog::set_level(spdlog::level::debug);
+        
         auto const day = program.get<std::string>("day");
         spdlog::info("Day {}", day);
-        int dayNumber = 0;
-        if (day == choices[dayNumber++])
-            returnCode = day1(AdventOfCode::Part::one);
-        else if (day == choices[dayNumber++])
-            returnCode = day1(AdventOfCode::Part::two);
-        else if (day == choices[dayNumber++])
-            returnCode = day2(AdventOfCode::Part::one);
-        else if (day == choices[dayNumber++])
-            returnCode = day2(AdventOfCode::Part::two);
-        else if (day == choices[dayNumber++])
-            returnCode = day13(AdventOfCode::Part::one);
-        else if (day == choices[dayNumber++])
-            returnCode = day13(AdventOfCode::Part::two);
-        else if (day == choices[dayNumber++])
-            returnCode = day3(AdventOfCode::Part::one);
-        else if (day == choices[dayNumber++])
-            returnCode = day3(AdventOfCode::Part::two);
-        else if (day == choices[dayNumber++])
-            returnCode = day4(AdventOfCode::Part::one);
-        else if (day == choices[dayNumber++])
-            returnCode = day4(AdventOfCode::Part::two);
-        else if (day == choices[dayNumber++])
-            returnCode = day5(AdventOfCode::Part::one);
-        else if (day == choices[dayNumber++])
-            returnCode = day5(AdventOfCode::Part::two);
-        else if (day == choices[dayNumber++])
-            returnCode = day6(AdventOfCode::Part::one);
-        else if (day == choices[dayNumber++])
-            returnCode = day6(AdventOfCode::Part::two);
+        if (auto const dayNr = std::stoi(day); dayFunctions.contains(dayNr))
+        {
+            auto const part = day.back() == 'a' ? AdventOfCode::Part::one : AdventOfCode::Part::two;
+            returnCode = dayFunctions.at(dayNr)(part);
+        }
         else
             throw std::runtime_error("We ran out of days!");
     }
