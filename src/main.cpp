@@ -10,6 +10,7 @@
 #include "days/day5.hpp"
 #include "days/day6.hpp"
 #include "days/day7.hpp"
+#include "days/day8.hpp"
 
 int main(int const argc, char **argv)
 {
@@ -25,10 +26,11 @@ int main(int const argc, char **argv)
             {  5, AdventOfCode::day5},
             {  6, AdventOfCode::day6},
             {  7, AdventOfCode::day7},
+            {  8, AdventOfCode::day8},
             { 13, AdventOfCode::day13},
         };
         
-        constexpr std::array<std::string_view, 16> choices{
+        constexpr std::array<std::string_view, 17> choices{
             "1a", "1b",
             "2a", "2b",
             "13a", "13b",
@@ -36,7 +38,8 @@ int main(int const argc, char **argv)
             "4a", "4b",
             "5a", "5b",
             "6a", "6b",
-            "7a" , "7b"
+            "7a" , "7b",
+            "8a" //, "8b"
         };
         constexpr auto defaultChoice = choices.back();
 
