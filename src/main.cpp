@@ -30,7 +30,7 @@ int main(int const argc, char **argv)
             { 13, AdventOfCode::day13},
         };
         
-        constexpr std::array<std::string_view, 17> choices{
+        constexpr std::array<std::string_view, 18> choices{
             "1a", "1b",
             "2a", "2b",
             "13a", "13b",
@@ -38,8 +38,8 @@ int main(int const argc, char **argv)
             "4a", "4b",
             "5a", "5b",
             "6a", "6b",
-            "7a" , "7b",
-            "8a" //, "8b"
+            "7a", "7b",
+            "8a", "8b"
         };
         constexpr auto defaultChoice = choices.back();
 
